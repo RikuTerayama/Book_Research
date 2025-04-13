@@ -1,0 +1,12 @@
+import json
+FAV_PATH = "data/favorites.json"
+
+def load_favorites():
+    with open(FAV_PATH, "r") as f:
+        return json.load(f)
+
+def save_favorite(book):
+    favorites = load_favorites()
+    favorites.append(book)
+    with open(FAV_PATH, "w") as f:
+        json.dump(favorites, f, indent=2)
