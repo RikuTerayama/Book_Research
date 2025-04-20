@@ -95,17 +95,26 @@ with st.sidebar:
     city = st.text_input("市区町村（例：中央区）")
 
 # 🔽 ここから追記
-dashboard_url = "https://bookresearchvfin-8uuzlpxevydwqbkyyxjk29.streamlit.app/"
-
 st.markdown("---")  # 区切り線
 
+dashboard_url = "https://bookresearchvfin-8uuzlpxevydwqbkyyxjk29.streamlit.app/"
+
+# シンプルで安定するリンク式のボタン（実は見た目はボタン）
 st.markdown(
     f"""
-    <a href="{dashboard_url}" target="_blank">
-        <button style="padding: 8px 16px; font-size: 16px; background-color:#1f77b4; color:white; border:none; border-radius:5px;">
+    <p style="text-align: center;">
+        <a href="{dashboard_url}" target="_blank" style="
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #1f77b4;
+            color: white;
+            border-radius: 6px;
+            font-size: 16px;
+            display: inline-block;
+        ">
             📊 ダッシュボードを見る
-        </button>
-    </a>
+        </a>
+    </p>
     """,
     unsafe_allow_html=True
 )
