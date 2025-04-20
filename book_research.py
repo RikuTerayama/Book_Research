@@ -166,7 +166,6 @@ if keyword and genre and pref and city:
         keyword_list = [line.lstrip("123. ").strip() for line in keywords.splitlines() if line.strip()]
         related_books = []
         for kw in keyword_list:
-            st.write(f"🔍 検索ワード: {kw}")  # ← デバッグ用
             books = search_books_on_google(kw)
             related_books.extend(books)
 
