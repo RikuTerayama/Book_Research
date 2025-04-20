@@ -1,14 +1,14 @@
 import streamlit as st
 import os
 import requests
+from dotenv import load_dotenv
 from openai import OpenAI
 import time
 
 # --- 環境変数の読み込み ---
-
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-CALIL_APPKEY = os.environ.get("CALIL_APPKEY")
-st.write("✅ OPENAI_API_KEY:", OPENAI_API_KEY[:8] if OPENAI_API_KEY else "❌ 読み込み失敗")
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+CALIL_APPKEY = os.getenv("CALIL_APPKEY")
 
 # --- OpenAI クライアント初期化 ---
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -113,7 +113,6 @@ if keyword and genre and pref and city:
 """
     with st.spinner("AIがキーワードを生成しています..."):
         keywords = generate_book_keywords(full_prompt)
-        st.write("📝 生成されたキーワード:", keywords)
 
     with st.spinner("図書館を検索中..."):
         libraries = get_libraries(pref, city)
