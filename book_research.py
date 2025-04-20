@@ -1,12 +1,11 @@
 import streamlit as st
 import os
 import requests
-from dotenv import load_dotenv
 from openai import OpenAI
 import time
 
 # --- 環境変数の読み込み ---
-load_dotenv()
+
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 CALIL_APPKEY = os.environ.get("CALIL_APPKEY")
 
