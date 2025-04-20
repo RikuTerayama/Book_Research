@@ -95,11 +95,20 @@ with st.sidebar:
     city = st.text_input("市区町村（例：中央区）")
 
 # 🔽 ここから追記
-    st.markdown("---")  # 区切り線（任意）
+dashboard_url = "https://bookresearchvfin-8uuzlpxevydwqbkyyxjk29.streamlit.app/"
 
-    dashboard_url = "https://bookresearchvfin-8uuzlpxevydwqbkyyxjk29.streamlit.app/"  # ← 遷移先URLに変更してください
-    if st.button("ダッシュボードを見る"):
-        st.markdown(f'<meta http-equiv="refresh" content="0;URL=\'{dashboard_url}\'" />', unsafe_allow_html=True)
+st.markdown("---")  # 区切り線
+
+st.markdown(
+    f"""
+    <a href="{dashboard_url}" target="_blank">
+        <button style="padding: 8px 16px; font-size: 16px; background-color:#1f77b4; color:white; border:none; border-radius:5px;">
+            📊 ダッシュボードを見る
+        </button>
+    </a>
+    """,
+    unsafe_allow_html=True
+)
 
 if keyword and genre and pref and city:
     full_prompt = f"""本を探しています。
