@@ -97,7 +97,7 @@ with st.sidebar:
 # 🔽 ここから追記
     st.markdown("---")  # 区切り線（任意）
 
-    dashboard_url = "https://nikkei.com"  # ← 遷移先URLに変更してください
+    dashboard_url = "https://bookresearchvfin-8uuzlpxevydwqbkyyxjk29.streamlit.app/"  # ← 遷移先URLに変更してください
     if st.button("ダッシュボードを見る"):
         st.markdown(f'<meta http-equiv="refresh" content="0;URL=\'{dashboard_url}\'" />', unsafe_allow_html=True)
 
