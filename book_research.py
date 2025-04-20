@@ -7,8 +7,8 @@ import time
 
 # --- 環境変数の読み込み ---
 load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-CALIL_APPKEY = os.getenv("CALIL_APPKEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+CALIL_APPKEY = os.environ.get("CALIL_APPKEY")
 
 # --- OpenAI クライアント初期化 ---
 client = OpenAI(api_key=OPENAI_API_KEY)
