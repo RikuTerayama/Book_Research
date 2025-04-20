@@ -8,6 +8,7 @@ import time
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 CALIL_APPKEY = os.environ.get("CALIL_APPKEY")
+st.write("✅ OPENAI_API_KEY:", OPENAI_API_KEY[:8] if OPENAI_API_KEY else "❌ 読み込み失敗")
 
 # --- OpenAI クライアント初期化 ---
 client = OpenAI(api_key=OPENAI_API_KEY)
