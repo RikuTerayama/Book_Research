@@ -141,7 +141,10 @@ if keyword and genre and pref and city:
         st.success(f"\U0001F4DA 検索対象の図書館（{len(libnames)}館）: {', '.join(libnames)}")
 
     with st.spinner("Google Booksで関連本を検索中..."):
-        related_books = search_books_on_google(keywords)
+        keyword_list = [line.lstrip("123. ").strip() for line in keywords.splitlines() if line.strip()]
+        related_books = []
+        for kw in keyword_list:
+            related_books.extend(search_books_on_google(kw))
 
     for book in related_books:
         title = book["title"]
