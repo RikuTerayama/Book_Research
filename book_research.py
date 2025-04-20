@@ -25,11 +25,24 @@ def generate_book_keywords(user_input):
 
 # --- Google Books APIで本を検索 ---
 def search_books_on_google(query):
-    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&country=JP&key={GOOGLE_BOOKS_API_KEY}"
-    response = requests.get(url)
+    url = "https://www.googleapis.com/books/v1/volumes"
+    params = {
+        "q": query,
+        "key": GOOGLE_BOOKS_API_KEY,
+        "country": "JP",
+        "maxResults": 5
+    }
+    response = requests.get(url, params=params)
+
+    # エラーハンドリング
+    if response.status_code != 200:
+        st.error(f"❌ Google Books API エラー: {response.status_code}")
+        st.code(response.text, language="json")
+        return []
+
     items = response.json().get("items", [])
     books = []
-    for item in items[:5]:  # 上位5件だけ表示
+    for item in items:
         info = item.get("volumeInfo", {})
         title = info.get("title", "タイトル不明")
         authors = ", ".join(info.get("authors", ["著者不明"]))
@@ -38,8 +51,16 @@ def search_books_on_google(query):
         link = info.get("infoLink", "")
         industry_ids = info.get("industryIdentifiers", [])
         isbn = next((i["identifier"] for i in industry_ids if i["type"] in ["ISBN_13", "ISBN_10"]), None)
-        books.append({"title": title, "authors": authors, "description": description, "isbn": isbn, "image": image, "link": link})
+        books.append({
+            "title": title,
+            "authors": authors,
+            "description": description,
+            "isbn": isbn,
+            "image": image,
+            "link": link
+        })
     return books
+
 
 # --- 蔵書検索API（カーリル） ---
 def get_libraries(pref, city):
