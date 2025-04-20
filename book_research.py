@@ -167,11 +167,8 @@ if keyword and genre and pref and city:
         related_books = []
         for kw in keyword_list:
             st.write(f"🔍 検索ワード: {kw}")  # ← デバッグ用
-            response = requests.get(
-            f"https://www.googleapis.com/books/v1/volumes?q={kw}&key={GOOGLE_BOOKS_API_KEY}"
-            )
-            st.write(f"📦 ステータス: {response.status_code}")  # ← レスポンスコード確認
-            st.write(response.json())  # ← 実際の中身確認
+            books = search_books_on_google(kw)
+            related_books.extend(books)
 
     for book in related_books:
         title = book["title"]
