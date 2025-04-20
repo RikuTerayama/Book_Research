@@ -9,6 +9,7 @@ import time
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 CALIL_APPKEY = os.getenv("CALIL_APPKEY")
+GOOGLE_BOOKS_API_KEY = os.getenv("GOOGLE_BOOKS_API_KEY")
 
 # --- OpenAI クライアント初期化 ---
 client = OpenAI(api_key=OPENAI_API_KEY)
@@ -24,7 +25,7 @@ def generate_book_keywords(user_input):
 
 # --- Google Books APIで本を検索 ---
 def search_books_on_google(query):
-    url = f"https://www.googleapis.com/books/v1/volumes?q={query}"
+    url = f"https://www.googleapis.com/books/v1/volumes?q={query}"&key={GOOGLE_BOOKS_API_KEY}"
     response = requests.get(url)
     items = response.json().get("items", [])
     books = []
@@ -145,7 +146,9 @@ if keyword and genre and pref and city:
         related_books = []
         for kw in keyword_list:
             st.write(f"🔍 検索ワード: {kw}")  # ← デバッグ用
-            response = requests.get(f"https://www.googleapis.com/books/v1/volumes?q={kw}")
+            response = requests.get(
+            f"https://www.googleapis.com/books/v1/volumes?q={kw}&key={GOOGLE_BOOKS_API_KEY}"
+            )
             st.write(f"📦 ステータス: {response.status_code}")  # ← レスポンスコード確認
             st.write(response.json())  # ← 実際の中身確認
 
