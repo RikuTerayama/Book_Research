@@ -144,7 +144,10 @@ if keyword and genre and pref and city:
         keyword_list = [line.lstrip("123. ").strip() for line in keywords.splitlines() if line.strip()]
         related_books = []
         for kw in keyword_list:
-            related_books.extend(search_books_on_google(kw))
+            st.write(f"🔍 検索ワード: {kw}")  # ← デバッグ用
+            response = requests.get(f"https://www.googleapis.com/books/v1/volumes?q={kw}")
+            st.write(f"📦 ステータス: {response.status_code}")  # ← レスポンスコード確認
+            st.write(response.json())  # ← 実際の中身確認
 
     for book in related_books:
         title = book["title"]
