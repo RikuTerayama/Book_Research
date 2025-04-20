@@ -25,7 +25,7 @@ def generate_book_keywords(user_input):
 
 # --- Google Books APIで本を検索 ---
 def search_books_on_google(query):
-    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={GOOGLE_BOOKS_API_KEY}"
+    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&country=JP&key={GOOGLE_BOOKS_API_KEY}"
     response = requests.get(url)
     items = response.json().get("items", [])
     books = []
