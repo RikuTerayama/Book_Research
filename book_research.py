@@ -113,6 +113,7 @@ if keyword and genre and pref and city:
 """
     with st.spinner("AIがキーワードを生成しています..."):
         keywords = generate_book_keywords(full_prompt)
+        st.write("📝 生成されたキーワード:", keywords)
 
     with st.spinner("図書館を検索中..."):
         libraries = get_libraries(pref, city)
